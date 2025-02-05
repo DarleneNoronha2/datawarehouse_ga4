@@ -1,0 +1,178 @@
+config { type: "operations" }
+
+CREATE OR REPLACE TABLE `dimension_md` (
+    id_movie_details STRING,
+    video_id STRING,
+    original_headline STRING,
+    movie_catalog_id STRING,
+    cover_landscape STRING,
+    cover_landscape_minified STRING,
+    video_description STRING,
+    self_rated_content BOOLEAN,
+    origin_program_id STRING,
+    video_encrypted BOOLEAN,
+    url STRING,
+    video_url STRING,
+    countries STRING,
+    video_archived BOOLEAN,
+    video_format STRING,
+    logo STRING,
+    white_logo STRING,
+    poster STRING,
+    tv_os_poster4k STRING,
+    tv_os_poster_hd STRING,
+    cover_portrait STRING,
+    cover_wide STRING,
+    cover_card STRING,
+    cover_poster STRING,
+    cover STRING,
+    epg_active BOOLEAN,
+    genre_id STRING,
+    genre_slug STRING,
+    directors_id STRING,
+    cast_names STRING,
+    cast_id STRING,
+    screenwriters_names STRING,
+    original_content BOOLEAN,
+    video_availability_rules STRING,
+    service_id STRING,
+    channel_id STRING,
+    channel_slug STRING,
+    subset_headline STRING,
+    subset_slug STRING,
+    subset_cover STRING,
+    structure_origin_program_id STRING,
+    structure_title_id STRING,
+    structure_type STRING,
+    apple_assets_apple_cover_art STRING,
+    apple_assets_apple_backdrop_wide STRING,
+    apple_assets_apple_backdrop_tall STRING,
+    apple_assets_apple_full_color_content_logo STRING,
+    apple_assets_apple_single_color_content_logo STRING,
+    apple_assets_poster_app STRING,
+    technical_specs_audio_layouts STRING,
+    content_brand_id STRING,
+    content_brand_name STRING,
+    content_brand_logo STRING,
+    content_brand_trimmed_logo STRING,
+    origin_video_id STRING,
+    video_kind STRING,
+    regions_allowed STRING,
+    index_level INTEGER,
+    video_title_origin_program_id STRING,
+    video_title_encrypted BOOLEAN,
+    video_title_epg_active BOOLEAN,
+    video_accessible_offline BOOLEAN,
+    video_exhibited_at TIMESTAMP,
+    video_scheduled_unpublication_date TIMESTAMP,
+    video_thumbnails_x90 STRING,
+    video_thumbnails_x216 STRING,
+    video_thumbnails_x360 STRING,
+    video_thumbnails_x720 STRING,
+    video_thumbnails_x1080 STRING,
+    video_published BOOLEAN,
+    video_external_reference_tms_id STRING,
+    video_external_reference_tms_root_id STRING,
+    video_genre_ids STRING,
+    video_genres_slug STRING, 
+    video_enable_pause_ads BOOLEAN,
+    video_ad_unit STRING,
+    video_ad_custom_data STRING,
+    video_subscription_service_id STRING,
+    video_subscription_service_name STRING,
+    video_subscription_default_service_id STRING,
+    dt_partition DATE
+)
+PARTITION BY
+    dt_partition
+CLUSTER BY
+    id_movie_details, video_id, original_headline;
+
+CREATE OR REPLACE TABLE `fact_vmd` (
+    id_metrics STRING,
+    user_id_new STRING,
+    video_id STRING,
+    video_name STRING,
+    origin_name STRING,
+    video_bucket_10 INTEGER,
+    video_bucket_25 INTEGER,
+    video_bucket_50 INTEGER,
+    video_bucket_75 INTEGER,
+    video_bucket_90 INTEGER,
+    video_bucket_100 INTEGER,
+    video_views INTEGER,
+    seconds_watched INTEGER,
+    video_duration INTEGER,
+    video_fully_watched_threshold INTEGER,
+    date DATE
+)
+PARTITION BY
+    date
+CLUSTER BY
+    id_metrics, user_id_new, video_id, origin_name ;
+
+CREATE OR REPLACE TABLE `dimension_tc` (
+    id_consumption STRING,
+    user_id_new STRING,
+    video_id STRING,
+    session_id STRING,
+    date DATE,
+    hour INT64,
+    minute INT64,
+    user_age INT64,
+    user_gender STRING,
+    session_name STRING,
+    program_name STRING,
+    program_details STRING,
+    video_name STRING,
+    video_name_slug STRING, 
+    episode_name STRING,
+    operacional_system STRING,
+    consumption_country STRING, 
+    consumption_region STRING,
+    registration_region STRING,
+    consumption_city STRING,
+    service_id STRING,
+    streaming_type STRING,
+    video_type STRING,
+    program_id STRING,
+    open_video BOOLEAN,
+    consumption_environment STRING,
+    tv_manufacturer STRING,
+    tv_model STRING,
+    video_domain STRING,
+    codigo_praca STRING,
+    tier STRING,
+    dvr STRING,
+    seac_user BOOLEAN,
+    content_rating STRING,
+    content_rating_criteria STRING,
+    release_year INT64,
+    genre_name STRING,
+    directors_name STRING,
+    released_at TIMESTAMP,
+    channel_name STRING,
+    technical_specs_resolutions STRING,
+    deeplink STRING,
+    subset_id STRING,
+    video_available_for STRING
+)
+PARTITION BY
+    date
+CLUSTER BY
+    user_id_new, video_id, program_name;
+
+
+CREATE OR REPLACE TABLE `dimension_exc` (
+    id_extras_consumption STRING,				
+    user_id_new STRING,				
+    video_name STRING,		
+    program_name STRING,				
+    user_type STRING,	
+    streaming_type STRING,		
+    date DATE
+)
+PARTITION BY
+    date
+CLUSTER BY
+    user_id_new, program_name;
