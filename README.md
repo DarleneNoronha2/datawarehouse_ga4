@@ -7,10 +7,10 @@ Este repositório contém um pipeline de dados aprimorado, construído usando SQ
 O pipeline mantém uma estrutura modular, com o gerenciamento de dependências e ordem de execução.
 
 ## Processos
-1- Criação das tabelas;
-2- Tratamento nos dados;
-3- Inserção dos dados;
-4- Checagem de completude nos dados;
+1- Criação das tabelas.
+2- Tratamento nos dados.
+3- Inserção dos dados.
+4- Checagem de completude nos dados.
 
 
 ## Higienização de Texto
