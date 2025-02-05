@@ -2,11 +2,6 @@
 
 Este repositório contém um pipeline de dados aprimorado, construído usando SQL e dbt, para transformar e analisar dados de consumo de vídeo, incluindo o consumo de trailers. O pipeline ingere dados de várias fontes, realiza limpeza e transformações, e cria tabelas agregadas para análise. Ele também incorpora funções definidas pelo usuário (UDFs) para higienização de dados.
 
-## Visão Geral do Projeto
-
-Este projeto foca na construção de um data warehouse especificamente projetado para otimizar a análise de plataformas de streaming. A modelagem adotada foi o star schema, uma técnica comprovada para oferecer alta performance e simplicidade na consulta e análise de dados.
-
-
 ## Arquitetura
 
 O pipeline mantém uma estrutura modular, com o gerenciamento de dependências e ordem de execução.
